@@ -9,19 +9,27 @@
 
 <body>
     <div id="content"></div>
+
+
+
 </body>
 
 <script>
-    fetch("https://the-trivia-api.com/v2/session")
-        .then(response => response.text())
-        .then(data => displayData(data))
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-    function displayData(data) {
-        document.getElementById("content").innerText = data.people;
+    // fetch("https://the-trivia-api.com/v2/session")
+     fetch('https://the-trivia-api.com/v2/questions')
+         .then(response => response.json())      // then(response => response.text())
+         .then(data => displayData(data))
+         .catch(error => {
+             console.error('Error fetching data:', error);
+         });
+     function displayData(data) {
+         document.getElementById("content").innerText = data[1].id;
+         //document.getElementById("content").innerText = data[1].category;
+         //document.getElementById("content").innerText = data["id"];
+     }
+ 
+ </script>
 
-    }
-</script>
 
 </html>
+
