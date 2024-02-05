@@ -8,28 +8,40 @@
 </head>
 
 <body>
-    <div id="content"></div>
-
-
+    <div color:"blue" id="content"></div>
 
 </body>
 
 <script>
     // fetch("https://the-trivia-api.com/v2/session")
-     fetch('https://the-trivia-api.com/v2/questions')
-         .then(response => response.json())      // then(response => response.text())
-         .then(data => displayData(data))
-         .catch(error => {
-             console.error('Error fetching data:', error);
-         });
-     function displayData(data) {
-         document.getElementById("content").innerText = data[1].id;
-         //document.getElementById("content").innerText = data[1].category;
-         //document.getElementById("content").innerText = data["id"];
-     }
- 
- </script>
+    fetch('https://the-trivia-api.com/v2/questions')
+        .then(response => response.json())      // then(response => response.text())
+        .then(data => displayData(data))
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    function displayData(data) {
+        document.getElementById("content").innerText = data[0].id;
+        document.getElementById("content").innerText = data[0].question;
+        //document.getElementById("content").innerText = data[1].category;
+        //document.getElementById("content").innerText = data["id"];
+        for (let i = 0; i < 10; i++) {
+            console.log(i);
+            for (const key in data[i]) {
+
+                console.log(`${key}: ${data[i][key]}`);
+                //  console.log(`${key}: ${data[0][question][0]}`);
+
+               // for (const key in data[0][question]) {
+                //console.log(`${key}: ${data[0][question][key]}`);
+                //  console.log(`${key}: ${data[0][question][0]}`);
+
+
+
+            }
+        }
+    }
+</script>
 
 
 </html>
-
