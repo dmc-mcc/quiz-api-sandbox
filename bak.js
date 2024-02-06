@@ -18,4 +18,5 @@
         //document.getElementById("content").json = data.people;
         //console.log(data.people)
     }
-</script>
+    
+    </script>

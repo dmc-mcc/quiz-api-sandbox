@@ -12,6 +12,9 @@
     <div id="content"></div>
     <div id="content2"></div>
     <div style="color:blue; background-color:aqua; width: 50%" id="content3"></div>
+    <div id="content4"></div>
+    <div id="content5"></div>
+    <div id="content6"></div>
 </body>
 
 <script>
@@ -26,8 +29,10 @@
 
     function displayData(data) {
         setTimeout(20000)
-        document.getElementById("content").innerText = data[0].tags;
-        document.getElementById("content2").innerText = data[0].question.text;  // access the actual question: object = question -> text = parameter.
+        document.getElementById("content").innerText = "Question Topic: " + data[0].tags;
+        document.getElementById("content2").innerText = "question: " + data[0].question.text;  // access the actual question: object = question -> text = parameter.
+        document.getElementById("content4").innerText = "correctAnswer: " + data[0].correctAnswer;
+        document.getElementById("content5").innerText = "incorrectAnswers: " + data[0].incorrectAnswers;
 
         //document.getElementById("content").innerText = data[0].question;
         //document.getElementById("content").innerText = data[1].category;
