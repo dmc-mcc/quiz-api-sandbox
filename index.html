@@ -18,100 +18,105 @@
 </body>
 
 <script>
-
-
     /*
-    runQuiz()
-    displayQuestion()
-    displayAnswerOptions()
-    checkAnswer()
-    displayCorrectAnswer()
-    
-    incrementCorrectCount()
-    incrementWrongCount()
-    */
-
-    /*
-    wait fpr the page/DOM to load
+    wait for the page/DOM to load
     add event listeners
-    */
+    */    
     document.addEventListener("DOMContentLoaded", function () {
         let buttons = document.getElementsByTagName("button");
         //for (let i=0; i < buttons.length; i++) - traditional, more explicit (clearer?) syntax
         for (let button of buttons) {
             // iterate through array of buttons and add event listener to each button
-            button.addEventListener("click", function () {
+            button.addEventListener("click", startQuiz() /*function () {
                 if (this.getAttribute("data-type") === "submit") {
                     checkAnswer();
                     //alert("You clicked submit");
                 } else {
-                    runGame();
+                    startQuiz();
                     //let gameType = this.getAttribute("data-type");
                     //runGame(gameType);
                     //alert(`You clicked ${gameType}`);                
                 }
-            })
+            }*/
+            )
         }
-        // fetch("https://the-trivia-api.com/v2/session")
-        // make an API call to get the questions for this quiz round
-        fetch('https://the-trivia-api.com/v2/questions')
-            .then(response => response.json())      // then(response => response.text())
-            .then(data => displayData(data))
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-        document.getElementById("content1").innerText = "Hi World";
-        function displayData(data) {
-            setTimeout(20000)
-            document.getElementById("content").innerText = "Question Topic: " + data[0].tags;
-
-            document.getElementById("content5").innerText = "incorrectAnswers: " + data[0].incorrectAnswers;
-
-            document.getElementById("content2").innerText = "Question: " + data[0].question.text;  // access the actual question: object = question -> text = parameter.
-
-
-
-            //document.getElementById("content").innerText = data[0].question;
-            //document.getElementById("content").innerText = data[1].category;
-            //document.getElementById("content").innerText = data["id"];
-            console.log(data.length);
-            for (let i = 0; i < data.length; i++) {
-                console.log(i);
-                for (const key in data[i]) {
-
-                    console.log(`${key}: ${data[i][key]}`);
-                    //  console.log(`${key}: ${data[0][question][0]}`);
-
-                    // for (const key in data[0][question]) {
-                    //console.log(`${key}: ${data[0][question][key]}`);
-                    //  console.log(`${key}: ${data[0][question][0]}`);
-                }
-            }
-            //setTimeout(resolve, 20);
-            //setTimeout(200)      
-        }
-        runQuiz();
-
     });
+    // fetch("https://the-trivia-api.com/v2/session")
+    // make an API call to get the questions for this quiz round
+    /*   fetch('https://the-trivia-api.com/v2/questions')
+           .then(response => response.json())      // then(response => response.text())
+           .then(data => displayData(data))
+           .catch(error => {
+               console.error('Error fetching data:', error);
+           });
+   */
+    async function startQuiz() {
+        console.log("test");
+        const response = await fetch('https://the-trivia-api.com/v2/questions');
+        const data = await response.json();
+        console.log("test");
+        if (response.ok) {
+            console.log(data);
+        }
+        console.log("test");
+   //     return data;
+       displayData(data);
+       runQuiz(data);
+    }
+
+   console.log("test");
+//   runQuiz();
+    document.getElementById("content1").innerText = "Hi World";
+ //   startQuiz(data);
+    startQuiz();
+
+    function displayData(data) {
+        setTimeout(20000)
+        document.getElementById("content").innerText = "Question Topic: " + data[0].tags;
+
+        document.getElementById("content5").innerText = "incorrectAnswers: " + data[0].incorrectAnswers;
+
+        //document.getElementById("content2").innerText = "Question: " + data[0].question.text;  // access the actual question: object = question -> text = parameter.
+
+        //document.getElementById("content").innerText = data[0].question;
+        //document.getElementById("content").innerText = data[1].category;
+        //document.getElementById("content").innerText = data["id"];
+        console.log(data.length);
+        for (let i = 0; i < data.length; i++) {
+            console.log(i);
+            for (const key in data[i]) {
+
+                console.log(`${key}: ${data[i][key]}`);
+                //  console.log(`${key}: ${data[0][question][0]}`);
+
+                // for (const key in data[0][question]) {
+                //console.log(`${key}: ${data[0][question][key]}`);
+                //  console.log(`${key}: ${data[0][question][0]}`);
+            }
+        }
+        //setTimeout(resolve, 20);
+        //setTimeout(200)      
+    }
+    
+
+   // });
 
 
     /**
      * Main Quiz Loop
      */
     //    function runGame(gameType)
-    function runQuiz() {
-
+    function runQuiz(data) {
         //  document.getElementById("answer-box").value = "";
         // document.getElementById("answer-box").focus();
-
-
-
-
         document.getElementById("content3").innerText = "Hi World again";
-
-        //  let q = data[0].question.text;
-        displayQuestion();
-        displayCorrectAnswer();
+    //    startQuiz();
+        document.getElementById("content3").innerText = "Hi Hi World again";
+        console.log(data);
+        //const q = data[0].question.text;
+        displayQuestion(data[0].question.text);
+        displayAnswerOptions(data[0].correctAnswer, data[0].incorrectAnswers); 
+        displayCorrectAnswer(data[0].correctAnswer);
         /*  displayAnswerOptions();
           checkAnswer();
           
@@ -120,21 +125,25 @@
       */
     }
 
-    function displayQuestion() {
+    function displayQuestion(q) {
         //        document.getElementById("content2").innerText = "Question: " + data[0].question.text;  // access the actual question: object = question -> text = parameter.
-        document.getElementById("content2").innerText = "Question: ";  // access the actual question: object = question -> text = parameter.
+        document.getElementById("content2").innerText = "Question: " + q;  // access the actual question: object = question -> text = parameter.
+
+    };
+
+    function displayAnswerOptions(q, p) {
+        document.getElementById("content6").innerText = "Answer Choice: " + q + " " + p;
 
     };
 
 
-    function displayCorrectAnswer() {
-        document.getElementById("content4").innerText = "correctAnswer: " + data[0].correctAnswer;
-    }
-
-
-
-
-
+    function displayCorrectAnswer(q) {
+        document.getElementById("content4").innerText = "correctAnswer: " + q;
+    };
+    
+    checkAnswer()      
+    incrementCorrectCount()
+    incrementWrongCount()
 
 </script>
 
