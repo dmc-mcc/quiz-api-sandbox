@@ -58,6 +58,9 @@ incrementWrongCount()
 Event reference:
 [text](https://developer.mozilla.org/en-US/docs/Web/Events)
 
+FormData:
+The FormData interface provides a way to construct a set of key/value pairs representing form fields and their values, which can be sent using the fetch(), XMLHttpRequest.send() or navigator.sendBeacon() methods. It uses the same format a form would use if the encoding type were set to "multipart/form-data".
+https://developer.mozilla.org/en-US/docs/Web/API/FormData
 
 .innertext or .textcontent ???
 
