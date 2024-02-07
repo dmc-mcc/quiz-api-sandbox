@@ -1,8 +1,12 @@
 # quiz-api-sandbox
 
 
+
+
     fetch('https://the-trivia-api.com/v2/questions')
 
+
+Sample return Data: an array of objects. Each object is a quiz question. 
 
 [
     {"category":"society_and_culture","id":"622a1c3a7cc59eab6f9511ca","correctAnswer":"Spring","incorrectAnswers":["Winter","Summer","Fall"],"question":{"text":"Persephone was the Greek goddess of what?"},"tags":["ancient_greece","mythology","society_and_culture"],"type":"text_choice","difficulty":"hard","regions":[],"isNiche":false},
@@ -39,4 +43,22 @@ async function asyncFunction() {
 }
 // Call the async function
 asyncFunction();
+
+Javascript Functions:
+
+runQuiz()
+displayQuestion()
+displayAnswerOptions()
+checkAnswer()
+displayCorrectAnswer()
+
+incrementCorrectCount()
+incrementWrongCount()
+
+Event reference:
+[text](https://developer.mozilla.org/en-US/docs/Web/Events)
+
+
+.innertext or .textcontent ???
+
 
